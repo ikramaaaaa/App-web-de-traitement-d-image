@@ -1,8 +1,8 @@
-# Image Lab - Traitement d'Images
+# TswirTy - Traitement d'Images
 
 Application web pour le traitement et l'analyse d'images avec un backend FastAPI et un frontend React.
 
-## 📋 Prérequis
+## Prérequis
 
 - **Python 3.8+**
 - **Node.js 16+**
@@ -11,9 +11,9 @@ Application web pour le traitement et l'analyse d'images avec un backend FastAPI
 
 ---
 
-## 🚀 Installation et Démarrage
+## Installation et Démarrage
 
-### **1️⃣ Backend - Python (FastAPI)**
+### **1️ Backend - Python (FastAPI)**
 
 #### Créer et activer l'environnement virtuel
 
@@ -27,7 +27,10 @@ python -m venv image
 # Activer l'environnement (Windows - PowerShell)
 .\image\Scripts\Activate
 
-# Activer l'environnement (Windows - Command Prompt)
+```
+
+```bash
+# Activer l'environnement Pour Windows - Command Prompt
 image\Scripts\activate.bat
 
 # Activer l'environnement (macOS/Linux)
@@ -48,11 +51,11 @@ pip install -r requirements.txt
 uvicorn main:app --reload
 ```
 
-**Vérification:** Allez sur `http://localhost:8000/docs` pour voir la documentation Swagger
+**Vérification:** Allez sur `[http://localhost:8000/docs](http://127.0.0.1:8000/)`, si vous trouvez {"message":"API running"} donc tout est bien.
 
 ---
 
-### **2️⃣ Frontend - React**
+### **2️ Frontend - React**
 
 #### Installer les dépendances
 
@@ -75,21 +78,15 @@ npm start
 
 ---
 
-## ⚙️ Configuration Backend
+##  Configuration Backend
 
-Avant de lancer le backend, assurez-vous que le fichier `.env` est configuré:
+Avant de lancer le backend, assurez-vous que vous avez le fichier `.env`.
 
-```bash
-# Dans le dossier 'back', créez un fichier .env avec:
-SECRET_KEY=votre_cle_secrete_ici
-DATABASE_URL=postgresql://user:password@localhost:5432/imagelab
-SUPABASE_URL=votre_url_supabase
-SUPABASE_KEY=votre_cle_supabase
-```
+
 
 ---
 
-## 📁 Structure du Projet
+##  Structure du Projet
 
 ```
 projet_traitement_image/
@@ -98,7 +95,7 @@ projet_traitement_image/
 │   ├── requirements.txt           # Dépendances Python
 │   ├── main.py                    # Application principale
 │   ├── routers/                   # Routes API
-│   ├── services/                  # Logique métier
+│   ├── services/                  # Logique métier / Fonctions de traitement
 │   ├── models.py                  # Modèles SQLAlchemy
 │   └── ...
 │
@@ -118,110 +115,25 @@ projet_traitement_image/
 
 ---
 
-## 🔧 Commandes Utiles
 
-### Backend
 
-```bash
-# Activer l'environnement
-cd back
-.\image\Scripts\Activate
-
-# Installer les dépendances
-pip install -r requirements.txt
-
-# Lancer le serveur
-uvicorn main:app --reload
-
-# Désactiver l'environnement
-deactivate
-```
-
-### Frontend
-
-```bash
-# Installer les dépendances
-cd image-lab
-npm install
-
-# Lancer le serveur (développement)
-npm start
-
-# Construire pour la production
-npm run build
-```
-
----
-
-## 🌐 Accès à l'Application
+## Accès à l'Application
 
 - **Frontend:** http://localhost:3000
 - **Backend API:** http://localhost:8000
-- **API Docs (Swagger):** http://localhost:8000/docs
 
 ---
 
-## 📝 Fonctionnalités Principales
+## Fonctionnalités Principales
 
-- ✅ Traitement de bruits (gaussien, speckle, poivre & sel)
-- ✅ Détection de contours (Sobel, Canny, Laplacien, etc.)
-- ✅ Filtrage et restauration d'images
-- ✅ Convolution et déconvolution
-- ✅ Histogrammes et égalisation
-- ✅ Ajustement de luminosité et contraste
-- ✅ Gestion d'utilisateurs avec authentification
-- ✅ Historique des images traitées
-
----
-
-## 🐛 Dépannage
-
-### Le backend ne démarre pas
-
-```bash
-# Vérifier que l'env est activé
-# Vérifier les requirements
-pip install -r requirements.txt --upgrade
-
-# Vérifier les variables d'environnement
-echo $env:SECRET_KEY  # PowerShell
-```
-
-### Le frontend ne se lance pas
-
-```bash
-# Nettoyer et réinstaller
-rm -r node_modules
-npm install
-npm start
-```
-
-### Port déjà utilisé
-
-```bash
-# Backend sur un autre port
-uvicorn main:app --reload --port 8001
-
-# Frontend sur un autre port
-PORT=3001 npm start
-```
+- Traitement de bruits (gaussien, speckle, poivre & sel)
+- Détection de contours (Sobel, Canny, Laplacien, etc.)
+- Filtrage et restauration d'images
+- Convolution et déconvolution
+- Histogrammes et égalisation
+- Ajustement de luminosité et contraste
+- Gestion d'utilisateurs avec authentification
+- Historique des images traitées
+- Zoom In , zoom out, et crop 
 
 ---
-
-## 📚 Documentation
-
-- [FastAPI Docs](https://fastapi.tiangolo.com/)
-- [React Docs](https://react.dev/)
-- [OpenCV Python](https://docs.opencv.org/master/index.html)
-
----
-
-## 👤 Auteur
-
-Projet de traitement d'images - 2026
-
----
-
-## 📄 Licence
-
-MIT License
