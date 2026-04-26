@@ -107,19 +107,19 @@ def sobel(image_bytes: bytes) -> dict:
 def laplacien(image_bytes: bytes, kernel: str = "4") -> dict:
     """
     Détecte les contours avec le Laplacien.
-    kernel="4" : utilise les 4 voisins (haut, bas, gauche, droite)
-    kernel="8" : utilise les 8 voisins (y compris les diagonales)
+    kernel="4" : utilise la matrice de 4
+    kernel="8" : utilise la matrice de 8
     """
     # Décoder l'image
     I = _decode(image_bytes, grayscale=True)
 
     # Choisir le noyau en fonction du paramètre
     if kernel == "8":
-        D     = np.array([[1, 1, 1], [1, -8, 1], [1, 1, 1]], dtype=np.float32)
-        title = 'Laplacien 8-voisins'
+        D = np.array([[1, 1, 1], [1, -8, 1], [1, 1, 1]], dtype=np.float32)
+        title = 'Laplacien 8'
     else:
-        D     = np.array([[0, 1, 0], [1, -4, 1], [0, 1, 0]], dtype=np.float32)
-        title = 'Laplacien 4-voisins'
+        D = np.array([[0, 1, 0], [1, -4, 1], [0, 1, 0]], dtype=np.float32)
+        title = 'Laplacien 4'
 
     Ilap = cv2.filter2D(I, -1, D)
     return _single(Ilap, title)
