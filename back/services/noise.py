@@ -79,20 +79,7 @@ def apply_filter(original_bytes, noisy_bytes, filter_type: str, kernel_size: int
     elif filter_type == "median":
         restored = cv2.medianBlur(noisy, k)
  
-    # Filtre DOG (Difference of Gaussians): passe-haut pour les contours
-    elif filter_type == "dog":
-        g1  = cv2.GaussianBlur(noisy, (k, k), 1.0)
-        g2  = cv2.GaussianBlur(noisy, (k + 2, k + 2), 2.0)
-        dog = cv2.subtract(g1, g2)
-        restored = np.clip(noisy.astype(np.int32) + dog, 0, 255).astype(np.uint8)
- 
-    # Filtre LoG: détecte les contours et les variations de luminosité
-    elif filter_type == "log":
-        blurred  = cv2.GaussianBlur(noisy, (k, k), 1.0)
-        gray     = cv2.cvtColor(blurred, cv2.COLOR_RGB2GRAY)
-        log      = cv2.Laplacian(gray, cv2.CV_64F)
-        log_img  = np.uint8(np.clip(np.abs(log), 0, 255))
-        restored = cv2.cvtColor(log_img, cv2.COLOR_GRAY2RGB)
+
  
     else:
         restored = noisy

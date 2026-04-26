@@ -19,8 +19,6 @@ const FILTER_TYPES = [
   { value: 'gaussien', label: 'Gaussien' },
   { value: 'binomial', label: 'Binomial' },
   { value: 'median', label: 'Médian' },
-  { value: 'dog', label: 'DOG' },
-  { value: 'log', label: 'LoG' },
 ];
 
 const KERNEL_SIZES = [
