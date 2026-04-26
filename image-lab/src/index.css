@@ -1,0 +1,295 @@
+@import url('https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600;700;800&family=DM+Sans:ital,wght@0,300;0,400;0,500;0,600;1,400&family=JetBrains+Mono:wght@400;500&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* ══════════════════════════════════════════
+   DARK THEME (défaut)
+══════════════════════════════════════════ */
+:root, .dark {
+  --brand-glow:    rgba(41, 121, 255, 0.35);
+  --brand-glow-sm: rgba(41, 121, 255, 0.15);
+
+  --bg-base:       #0b0f1a;
+  --bg-card:       #111827;
+  --bg-hover:      #1a2436;
+  --bg-glass:      rgba(17, 24, 39, 0.75);
+  --bg-glass-s:    rgba(11, 15, 26, 0.88);
+
+  --border-color:  #1e2a3a;
+  --border-brand:  rgba(41, 121, 255, 0.12);
+  --border-brand2: rgba(41, 121, 255, 0.18);
+
+  --text-primary:  #e2e8f0;
+  --text-secondary:#94a3b8;
+  --text-muted:    #475569;
+
+  --scrollbar-track: #111827;
+  --scrollbar-thumb: #2979ff44;
+  --scrollbar-hover: #2979ff88;
+
+  --image-panel-bg: #050810;
+  --range-track:    #1e2a3a;
+  --tooltip-bg:     #111827;
+  --shimmer-base:   #1e2a3a;
+  --shimmer-shine:  #2979ff22;
+}
+
+/* ══════════════════════════════════════════
+   LIGHT THEME
+══════════════════════════════════════════ */
+.light {
+  --brand-glow:    rgba(41, 121, 255, 0.20);
+  --brand-glow-sm: rgba(41, 121, 255, 0.10);
+
+  --bg-base:       #f0f4ff;
+  --bg-card:       #ffffff;
+  --bg-hover:      #e8eeff;
+  --bg-glass:      rgba(255, 255, 255, 0.80);
+  --bg-glass-s:    rgba(240, 244, 255, 0.92);
+
+  --border-color:  #dde3f0;
+  --border-brand:  rgba(41, 121, 255, 0.18);
+  --border-brand2: rgba(41, 121, 255, 0.25);
+
+  --text-primary:  #0f172a;
+  --text-secondary:#334155;
+  --text-muted:    #64748b;
+
+  --scrollbar-track: #e2e8f0;
+  --scrollbar-thumb: #2979ff66;
+  --scrollbar-hover: #2979ffaa;
+
+  --image-panel-bg: #e2e8f0;
+  --range-track:    #dde3f0;
+  --tooltip-bg:     #1e293b;
+  --shimmer-base:   #dde3f0;
+  --shimmer-shine:  #2979ff22;
+}
+
+/* ══════════════════════════════════════════
+   BASE STYLES (utilisent les variables)
+══════════════════════════════════════════ */
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+body {
+  background: var(--bg-base);
+  color: var(--text-primary);
+  font-family: 'DM Sans', sans-serif;
+  overflow-x: hidden;
+  transition: background 0.3s ease, color 0.3s ease;
+}
+
+/* ─── Scrollbar ─── */
+::-webkit-scrollbar { width: 6px; height: 6px; }
+::-webkit-scrollbar-track { background: var(--scrollbar-track); }
+::-webkit-scrollbar-thumb { background: var(--scrollbar-thumb); border-radius: 9999px; }
+::-webkit-scrollbar-thumb:hover { background: var(--scrollbar-hover); }
+
+/* ─── Particle Canvas ─── */
+#particle-canvas {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 0;
+}
+
+/* ─── Glass cards ─── */
+.glass {
+  background: var(--bg-glass);
+  backdrop-filter: blur(14px);
+  border: 1px solid var(--border-brand);
+  transition: background 0.3s ease, border-color 0.3s ease;
+}
+
+.glass-strong {
+  background: var(--bg-glass-s);
+  backdrop-filter: blur(24px);
+  border: 1px solid var(--border-brand2);
+  transition: background 0.3s ease, border-color 0.3s ease;
+}
+
+/* ─── Glow effects ─── */
+.glow-brand    { box-shadow: 0 0 20px var(--brand-glow); }
+.glow-brand-sm { box-shadow: 0 0 10px var(--brand-glow-sm); }
+.text-glow     { text-shadow: 0 0 20px rgba(41, 121, 255, 0.6); }
+
+/* ─── Active nav indicator ─── */
+.nav-active {
+  background: linear-gradient(135deg, rgba(41, 121, 255, 0.2), rgba(41, 121, 255, 0.05));
+  border-left: 2px solid #2979ff;
+  color: #60a5fa;
+}
+
+/* ─── Range slider ─── */
+input[type='range'] {
+  -webkit-appearance: none;
+  width: 100%;
+  height: 4px;
+  background: var(--range-track);
+  border-radius: 9999px;
+  outline: none;
+}
+input[type='range']::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  width: 14px;
+  height: 14px;
+  background: #2979ff;
+  border-radius: 9999px;
+  cursor: pointer;
+  box-shadow: 0 0 8px rgba(41,121,255,0.5);
+}
+
+/* ─── Image panels ─── */
+.image-panel {
+  position: relative;
+  overflow: hidden;
+  border-radius: 0.75rem;
+  background: var(--image-panel-bg);
+  border: 1px solid var(--border-color);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 0;
+  height: 100%;
+  transition: background 0.3s ease, border-color 0.3s ease;
+}
+
+/* ─── Histogram bars ─── */
+.hist-bar { transition: height 0.3s ease; }
+
+/* ─── Tooltip ─── */
+.tooltip {
+  position: absolute;
+  bottom: calc(100% + 6px);
+  left: 50%;
+  transform: translateX(-50%);
+  background: var(--tooltip-bg);
+  border: 1px solid #2979ff44;
+  color: var(--text-secondary);
+  font-size: 11px;
+  padding: 3px 8px;
+  border-radius: 4px;
+  white-space: nowrap;
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 0.2s;
+}
+.has-tooltip:hover .tooltip { opacity: 1; }
+
+/* ─── Shimmer skeleton ─── */
+@keyframes shimmer {
+  0%   { background-position: -200% center; }
+  100% { background-position:  200% center; }
+}
+.shimmer {
+  background: linear-gradient(90deg, var(--shimmer-base) 25%, var(--shimmer-shine) 50%, var(--shimmer-base) 75%);
+  background-size: 200% auto;
+  animation: shimmer 2s linear infinite;
+}
+
+/* ─── Tailwind overrides pour le mode light ─── */
+/* Les classes Tailwind hardcodées (slate-*, bg-surface, etc.) ont besoin d'overrides */
+
+/* Textes */
+.light .text-slate-300  { color: #1e293b !important; }
+.light .text-slate-400  { color: #334155 !important; }
+.light .text-slate-500  { color: #475569 !important; }
+.light .text-slate-600  { color: #64748b !important; }
+.light .text-slate-700  { color: #94a3b8 !important; }
+.light .text-white      { color: #0f172a !important; }
+
+/* Backgrounds */
+.light .bg-surface,
+.light [class*="bg-surface"] { background-color: #ffffff !important; }
+.light .bg-white\/5         { background-color: rgba(0,0,0,0.04) !important; }
+.light .bg-white\/8         { background-color: rgba(0,0,0,0.06) !important; }
+.light .hover\:bg-white\/5:hover { background-color: rgba(0,0,0,0.04) !important; }
+
+/* Borders */
+.light .border-surface-border { border-color: #dde3f0 !important; }
+.light [class*="border-slate"] { border-color: #dde3f0 !important; }
+
+/* Cards / panels */
+.light .glass {
+  background: rgba(255,255,255,0.85) !important;
+  border-color: rgba(41,121,255,0.15) !important;
+}
+.light .glass-strong {
+  background: rgba(240,244,255,0.95) !important;
+  border-color: rgba(41,121,255,0.20) !important;
+}
+.light .tooltip {
+  background: #ffffff;
+  border-color: #dde3f0;
+  color: #0f172a;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+}
+
+/* ─── NoiseSidebar light overrides ─── */
+
+/* Titres des sections (Dégradation / Restauration) */
+.light .text-blue-300   { color: #1d4ed8 !important; }
+.light .text-blue-400   { color: #2563eb !important; }
+
+/* Boutons actifs */
+.light .bg-blue-500\/15 { background-color: rgba(37, 99, 235, 0.10) !important; }
+.light .border-blue-500\/40 { border-color: rgba(37, 99, 235, 0.35) !important; }
+
+/* Hover boutons inactifs */
+.light .hover\:text-blue-300:hover { color: #1d4ed8 !important; }
+.light .hover\:border-blue-500\/30:hover { border-color: rgba(37, 99, 235, 0.30) !important; }
+
+/* Sections containers */
+.light .border-blue-500\/25 { border-color: rgba(37, 99, 235, 0.25) !important; }
+.light .bg-blue-500\/5      { background-color: rgba(37, 99, 235, 0.05) !important; }
+.light .border-blue-500\/15 { border-color: rgba(37, 99, 235, 0.15) !important; }
+.light .bg-blue-600\/30     { background-color: rgba(37, 99, 235, 0.15) !important; }
+
+.light .border-blue-400\/25 { border-color: rgba(59, 130, 246, 0.25) !important; }
+.light .bg-blue-400\/5      { background-color: rgba(59, 130, 246, 0.05) !important; }
+.light .border-blue-400\/15 { border-color: rgba(59, 130, 246, 0.15) !important; }
+.light .bg-blue-500\/20     { background-color: rgba(37, 99, 235, 0.12) !important; }
+
+/* Bouton principal */
+.light .bg-blue-600         { background-color: #2563eb !important; }
+.light .hover\:bg-blue-500:hover { background-color: #3b82f6 !important; }
+
+/* Panneau métriques */
+.light .bg-slate-800\/40    { background-color: rgba(241, 245, 249, 0.8) !important; }
+.light .border-slate-700\/50 { border-color: #dde3f0 !important; }
+.light .bg-slate-700        { background-color: #e2e8f0 !important; }
+.light .bg-blue-500         { background-color: #2563eb !important; }
+.light .font-mono.text-blue-400 { color: #2563eb !important; }
+
+/* Connecteur "puis" */
+.light .text-slate-600      { color: #94a3b8 !important; }
+.light .to-slate-700        { --tw-gradient-to: #cbd5e1 !important; }
+
+/* Badge recommandé */
+.light .text-emerald-400    { color: #059669 !important; }
+
+/* ─── ToggleGroup brand classes light overrides ─── */
+.light .bg-brand-600\/30     { background-color: rgba(37, 99, 235, 0.12) !important; }
+.light .text-brand-300       { color: #1d4ed8 !important; }
+.light .border-brand-600\/50 { border-color: rgba(37, 99, 235, 0.40) !important; }
+.light .hover\:text-slate-200:hover { color: #1e293b !important; }
+.light .hover\:border-brand-600\/30:hover { border-color: rgba(37, 99, 235, 0.30) !important; }
+
+/* ─── dark (défaut) ─── */
+:root, .dark {
+  --val-yellow-text: #fde047;   /* yellow-300 */
+  --val-yellow-bg:   rgba(161, 98, 7, 0.25);
+  --val-purple-text: #d8b4fe;   /* purple-300 */
+  --val-purple-bg:   rgba(107, 33, 168, 0.25);
+}
+
+/* ─── light ─── */
+.light {
+  --val-yellow-text: #92400e;   /* amber-800 — lisible sur fond clair */
+  --val-yellow-bg:   rgba(251, 191, 36, 0.20);
+  --val-purple-text: #5b21b6;   /* purple-800 */
+  --val-purple-bg:   rgba(139, 92, 246, 0.15);
+}
