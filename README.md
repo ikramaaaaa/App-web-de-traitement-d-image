@@ -125,12 +125,12 @@ projet_traitement_image/
 
 ## Le projet est réalisé par :
 
-- KHAYATI Meryem
-- ERREGUIG Halima
-- ALAMI OURIAGLI Omayma
-- KARFI Aya
-- BELHIMER Ikram
 - ACHTOUK Fatine
+- ALAMI OURIAGLI Omayma
+- BELHIMER Ikram
+- ER-REGUIGUE Halima
+- KARFI Aya
+- KHAYATI Meryem
 
 ---
 
